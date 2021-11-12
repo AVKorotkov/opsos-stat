@@ -18,8 +18,9 @@
 * [python-magic](https://pypi.org/project/python-magic/)
 * [openpyxl](https://pypi.org/project/openpyxl/)
 * [pandas](https://pypi.org/project/pandas/)
-* [camelot-py](https://pypi.org/project/camelot-py/)
-* [matplotlib](https://pypi.org/project/matplotlib/)
+* [PyMuPDF](https://pypi.org/project/PyMuPDF/)
+* [Camelot](https://pypi.org/project/camelot-py/)
+* [Matplotlib](https://pypi.org/project/matplotlib/)
 * [Confuse](https://pypi.org/project/confuse/)
 
 ## Установка
