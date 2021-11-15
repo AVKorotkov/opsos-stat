@@ -4,9 +4,9 @@
 """Статистика по услугам оператора сотовой связи."""
 
 import sys
-import time
+# import time
 import argparse
-import datetime
+# import datetime
 from pathlib import Path
 import magic
 import openpyxl
@@ -16,6 +16,9 @@ import confuse
 # import PyPDF2
 import fitz
 # from pdfreader import PDFDocument, SimplePDFViewer
+# import camelot
+import tabula
+
 
 def get_config():
     """Get keys/values from YAML configuration file and/or options."""
@@ -55,6 +58,7 @@ def check_format(ifh):
 
     return file_format
 
+
 def check_opsos(ifh):
     """Check opsos whether it is supported."""
     file_format = check_format(ifh)
@@ -84,17 +88,92 @@ def check_opsos(ifh):
     return file_format, opsos
 
 
+def get_beeline_stat(ifh, file_format):
+    """Get Beeline statistics."""
+    if file_format == 'xlsx':
+        data = pd.read_excel(ifh, sheet_name='Детализация', nrows=1)
+        print(data)
+        if data.iloc[0, 0].find('У вас не было расходов') != -1:
+            print(data.iloc[0, 0])
+            sys.exit(0)
+        data = pd.read_excel(
+            ifh,
+            sheet_name='Детализация',
+            header=1,
+            parse_dates=['Дата', 'Время']
+        )
+        # print(data.columns)
+        data = pd.read_excel(
+            ifh,
+            sheet_name='Детализация',
+            header=1,
+            usecols=[
+                'Дата',
+                'Время',
+                'Сервис',
+                'Номер',
+                'Объём услуг',
+                'Изменение баланса'
+                ],
+            parse_dates=['Дата', 'Время']
+        )
+        data.dropna(subset=['Объём услуг'], how='all', inplace=True)
+        data = data[data['Объём услуг'] != '—']
+        print(data)
+        sys.exit(0)
+
+    tables = tabula.read_pdf(
+        input_path,
+        pages="all",
+        multiple_tables=True
+    )
+    # for table in tables:
+    #     print(table.columns)
+    # del tables[0:2]
+    tab = tables[2]
+    tab.dropna(subset=['Объем услуг'], how='all', inplace=True)
+    tab.dropna(subset=['Номер телефона'], how='all', inplace=True)
+    tab = tab[['Сервис', 'Номер телефона', 'Объем услуг', 'Изменение баланса']]
+    print(tab)
+
+    sys.exit(0)
+
+
+def get_tele_stat():
+    """Get Tele 2 statistics."""
+
+
+def get_mts_stat():
+    """Get MTS statistics."""
+
+
+def get_stat(ifh, file_format, opsos):
+    """Get statistics."""
+    if opsos == 'beeline':
+        get_beeline_stat(ifh, file_format)
+    elif opsos == 'tele2':
+        get_tele_stat()
+    else:
+        get_mts_stat()
+
+
 def main():
-    """Получение статистики по услугам оператора сотовой связи."""
+    """Process input to get statistics."""
     # get configuration keys/values
-    config = get_config()
-    input_file = config['input'].get()
-    input_path = Path(input_file).absolute()
+    # config = get_config()
+    # input_file = config['input'].get()
+    # input_path = Path(input_file).absolute()
     with open(input_path, 'rb') as ifh:
         file_format, opsos = check_opsos(ifh)
         print(file_format)
         print(opsos)
+        get_stat(ifh, file_format, opsos)
 
+
+# get configuration keys/values
+config = get_config()
+input_file = config['input'].get()
+input_path = Path(input_file).absolute()
 
 main()
 
