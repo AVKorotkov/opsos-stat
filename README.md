@@ -23,6 +23,7 @@
 * [Camelot](https://pypi.org/project/camelot-py/)
 * [Matplotlib](https://pypi.org/project/matplotlib/)
 * [Confuse](https://pypi.org/project/confuse/)
+* [ConfigObj](https://pypi.org/project/configobj/)
 
 ## Установка
 

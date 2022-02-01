@@ -1,2 +1,57 @@
---- # Статистика по услугам оператора сотовой связи
-input: data/01.09.2021-30.09.2021_detalizaciya_9090000000.XLSX
+--- # Mobile network operator statistics
+incoming:
+  calls:
+    amount: false
+    duration: true
+    plot: true
+  sms:
+    amount: true
+    plot: false
+outgoing:
+  calls:
+    amount: true
+    duration: false
+    price: true
+    plot: true
+  sms:
+    amount: true
+    price: true
+    plot: true
+# input: data/01.09.2021-30.09.2021_detalizaciya_9090000000.XLSX
+# input: data/01.09.2021-30.09.2021_detalizaciya_9097145240.XLSX
+# input: data/Details-2021-11-79043170440.pdf
+# input: data/01.09.2021-30.09.2021_detalizaciya_9097145240.PDF
+# input: data/zip_code_database.xls
+# input: /tmp/test/06.04.2021-30.04.2021_detalizaciya_9097145240.XLSX
+
+# input: /tmp/test/06.04.2021-30.04.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.05.2021-31.05.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.06.2021-30.06.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.07.2021-31.07.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.08.2021-31.08.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.09.2021-30.09.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.10.2021-31.10.2021_detalizaciya_9097145240.XLSX
+# input: /tmp/test/01.11.2021-14.11.2021_detalizaciya_9097145240.XLSX
+input: /tmp/test/01.11.2021-18.11.2021_detalizaciya_9097145240.XLSX
+#
+# input: /tmp/test/14.04.2021-30.04.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.05.2021-31.05.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.06.2021-30.06.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.07.2021-31.07.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.08.2021-31.08.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.09.2021-30.09.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.10.2021-31.10.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.11.2021-14.11.2021_detalizaciya_9097145240.PDF
+# input: /tmp/test/01.11.2021-18.11.2021_detalizaciya_9097145240.PDF
+#
+# input: /tmp/test/Details-2021-11-79043170440.pdf
+# input: /tmp/test/Details-2021-11-79043170440..pdf
+# input: /tmp/test/Details-2021-11-79043170550..pdf
+# input: /tmp/test/Details-2021-11-79508281590.pdf
+# input: /tmp/test/Details-2021-11-79508281590..pdf
+#
+# input: /tmp/test/Отчет c 01.05.2021 по 25.10.2021.pdf
+# input: /tmp/test/Отчет c 01.06.2021 по 31.07.2021.pdf
+# input: /tmp/test/Отчет c 03.10.2021 по 03.11.2021.pdf
+# input: /tmp/test/int Отчет c 03.10.2021 по 03.11.2021.pdf
+output: /tmp/test
